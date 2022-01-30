@@ -15,8 +15,10 @@ export const StyledUserMenu = styled(Flex)`
   cursor: pointer;
   display: inline-flex;
   height: 32px;
-  padding-left: 40px;
-  padding-right: 8px;
+  padding: 5px 10px;      
+  line-height: 28px;
+  height: 52px;
+
   position: relative;
 
   &:hover {
@@ -74,7 +76,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [targetRef, setTargetRef] = useState<HTMLDivElement | null>(null);
   const [tooltipRef, setTooltipRef] = useState<HTMLDivElement | null>(null);
-  const accountEllipsis = account ? `${account.substring(0, 2)}...${account.substring(account.length - 4)}` : null;
+  const accountEllipsis = account ? `${account.substring(0, 5)}..${account.substring(account.length - 4)}` : null;
   const { styles, attributes } = usePopper(targetRef, tooltipRef, {
     strategy: "fixed",
     placement: "bottom-end",
@@ -110,7 +112,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
           setIsOpen((s) => !s);
         }}
       >
-        <MenuIcon avatarSrc={avatarSrc} variant={variant} />
         <LabelText title={text || account}>{text || accountEllipsis}</LabelText>
         <ChevronDownIcon color="text" width="24px" />
       </StyledUserMenu>
